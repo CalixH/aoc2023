@@ -1,5 +1,4 @@
 import sys
-from decimal import Decimal
 
 cardorder = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2']
 
@@ -53,27 +52,35 @@ class Main:
                 return False
 
             
-
-input = sys.stdin.readlines()
-cards = []
-bids = []
-finalcards = []
-finalbids = []
-for i in input:
-    cards.append(i.strip().split(" ")[0])
-    bids.append(i.strip().split(" ")[1])
-while len(cards) > 0:
-    mincard = Main(cards[0])
-    for i in cards:
-        j = Main(i)
-        if j < mincard:
-            mincard = j
-    finalcards.append(mincard.string)
-    finalbids.append(bids[cards.index(mincard.string)])
-    bids.pop(cards.index(mincard.string))
-    cards.remove(mincard.string)
-sum = Decimal(0)
-for i, c in enumerate(finalbids):
-    sum += (i+1) * Decimal(c)
+iter = [1,2]
+arr1 = []
+arr2 = []
+for k in iter:
+    input = sys.stdin.readlines()
+    cards = []
+    bids = []
+    finalcards = []
+    finalbids = []
+    for i in input:
+        cards.append(i.strip().split(" ")[0])
+        bids.append(i.strip().split(" ")[1])
+    while len(cards) > 0:
+        mincard = Main(cards[0])
+        for i in cards:
+            j = Main(i)
+            if j < mincard:
+                mincard = j
+        finalcards.append(mincard.string)
+        finalbids.append(bids[cards.index(mincard.string)])
+        bids.pop(cards.index(mincard.string))
+        cards.remove(mincard.string)
+    sum = 0
+    for i, c in enumerate(finalbids):
+        sum += (i+1) * int(c)
+        if k == 1:
+            arr1.append((i+1) * int(c))
+        if k == 2:
+            arr2.append((i+1) * int(c))
 print(sum)
+print(arr1 == arr2)
     
