@@ -1,4 +1,5 @@
 import sys
+from decimal import Decimal
 
 cardorder = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2']
 
@@ -66,12 +67,14 @@ while len(cards) > 0:
     for i in cards:
         j = Main(i)
         if j < mincard:
-            mincard = Main(i)
+            mincard = j
     finalcards.append(mincard.string)
     finalbids.append(bids[cards.index(mincard.string)])
+    bids.pop(cards.index(mincard.string))
     cards.remove(mincard.string)
-    bids.remove(finalbids[-1])
-sum = 0
+sum = Decimal(0)
 for i, c in enumerate(finalbids):
-    sum += (i+1)*int(c)
+    sum += (i+1) * Decimal(c)
 print(sum)
+print(finalcards)
+    
