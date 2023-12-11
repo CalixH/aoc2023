@@ -75,4 +75,3 @@ sum = 0
 for i, c in enumerate(finalbids):
     sum += (i+1)*int(c)
 print(sum)
-    
