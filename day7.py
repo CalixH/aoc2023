@@ -76,5 +76,4 @@ sum = Decimal(0)
 for i, c in enumerate(finalbids):
     sum += (i+1) * Decimal(c)
 print(sum)
-print(finalcards)
     
